@@ -1,0 +1,34 @@
+<div class="col-md-6">
+  <h2 class="text-center">Edit Client</h2>
+  <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>Name:</label>
+      <input type="text" formControlName="name" class="form-control" required [ngClass]="{ 'is-invalid': editForm.controls.name.hasError('required') }" />
+      <div *ngIf="editForm.controls.name.hasError('required')" class="invalid-feedback">First Name is required</div>
+    </div>
+
+    <div class="form-group">
+      <label>Credit Limit:</label>
+      <input type="text" formControlName="creditLimit" class="form-control" currencyMask [ngClass]="{ 'is-invalid': editForm.controls.creditLimit.hasError('required') }" />
+      <div *ngIf="editForm.controls.name.hasError('required')" class="invalid-feedback">First Name is required</div>
+    </div>
+
+    <div class="form-group">
+      <label>Client Type:</label>
+      <input type="hidden" formControlName="clientType" class="form-control" pattern="^(?!.*Select).*$">
+      <ul class="nav nav-pills">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" [routerLink]="" role="button" aria-haspopup="true" aria-expanded="false">{{clientTypeValue.description}}</a>
+          <div *ngIf="clientType == 'Select'" class="invalid-feedback">Client Type is required</div>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" (click)="onClientTypeUnselected()" [routerLink]="">Select</a>
+            <a *ngFor="let item of clientTypes" class="dropdown-item" (click)="onClientTypeSelect(item)" [routerLink]="">{{item.description}}</a>
+          </div>
+        </li>
+      </ul>
+      <div *ngIf="editForm.controls.clientType.hasError('pattern')" class="invalid-feedback">Client Type is required</div>
+    </div>
+
+    <button class="btn btn-success">Save</button>
+  </form>
+</div>
