@@ -4,3 +4,6 @@ spring:
             ddl-auto: create
     profiles:
          active: "dev"
+    security:
+        ignored:
+        - "*.bundle.*"

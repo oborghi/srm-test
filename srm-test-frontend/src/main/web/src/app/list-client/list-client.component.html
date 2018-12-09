@@ -1,29 +1,33 @@
-<div class="col-md-6">
-  <h2> Client Details</h2>
-  <div class="btn-toolbar text-center well margin-bottom">
-    <button class="btn btn-danger" (click)="addClient()"> Add</button>
+<div class="container">
+  <div class="row margin-top">
+    <div class="col-md-6 offset-md-3">
+      <h2> Client Details</h2>
+      <div class="btn-toolbar text-center well margin-bottom">
+        <button class="btn btn-primary" (click)="addClient()"> Add</button>
+      </div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Credit Limit</th>
+            <th>Client Type</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let client of clients">
+            <td>{{client.id}}</td>
+            <td>{{client.name}}</td>
+            <td>{{client.creditLimit | currency}}</td>
+            <td>{{client.clientType}}</td>
+            <td>
+              <button class="btn btn-danger" (click)="deleteClient(client)"> Delete</button>
+              <button class="btn btn-success margin-left" (click)="editClient(client)"> Edit</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Credit Limit</th>
-        <th>Client Type</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let client of clients">
-        <td>{{client.id}}</td>
-        <td>{{client.name}}</td>
-        <td>{{client.creditLimit | currency}}</td>
-        <td>{{client.clientType}}</td>
-        <td>
-          <button class="btn btn-danger" (click)="deleteClient(client)"> Delete</button>
-          <button class="btn btn-danger" (click)="editClient(client)" style="margin-left: 20px;"> Edit</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
 </div>

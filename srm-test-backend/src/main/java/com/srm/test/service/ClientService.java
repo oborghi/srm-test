@@ -22,8 +22,8 @@ public class ClientService {
         return this.clientDao.save(applyRiskFactor(client));
     }
 
-    public Optional<Client> getClientById(int id) {
-        return this.clientDao.findById(id);
+    public Client getClientById(int id) {
+        return this.clientDao.findOne(id);
     }
 
     public Client updateClient(Client client) {
@@ -31,7 +31,7 @@ public class ClientService {
     }
 
     public void deleteClientById(int id) {
-        this.clientDao.deleteById(id);
+        this.clientDao.delete(id);
     }
 
     public void deleteAllClients() {

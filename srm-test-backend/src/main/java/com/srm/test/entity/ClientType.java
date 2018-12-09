@@ -1,7 +1,8 @@
 package com.srm.test.entity;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 
 import static java.util.Objects.isNull;
 
@@ -10,7 +11,6 @@ import static java.util.Objects.isNull;
 public class ClientType {
     @Column(name = "ID")
     @Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Column(name = "DESCRIPTION", nullable = false)

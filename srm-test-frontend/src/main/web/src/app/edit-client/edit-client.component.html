@@ -1,34 +1,40 @@
-<div class="col-md-6">
-  <h2 class="text-center">Edit Client</h2>
-  <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label>Name:</label>
-      <input type="text" formControlName="name" class="form-control" required [ngClass]="{ 'is-invalid': editForm.controls.name.hasError('required') }" />
-      <div *ngIf="editForm.controls.name.hasError('required')" class="invalid-feedback">First Name is required</div>
-    </div>
+<div class="container">
+  <div class="row margin-top">
+    <div class="col-md-6 offset-md-3">
+      <h2 class="text-center">Edit Client</h2>
+      <form (ngSubmit)="onSubmit()" [formGroup]="editClientForm">
+        <input type="hidden" class="form-control" formControlName="id" />
 
-    <div class="form-group">
-      <label>Credit Limit:</label>
-      <input type="text" formControlName="creditLimit" class="form-control" currencyMask [ngClass]="{ 'is-invalid': editForm.controls.creditLimit.hasError('required') }" />
-      <div *ngIf="editForm.controls.name.hasError('required')" class="invalid-feedback">First Name is required</div>
-    </div>
+        <div class="form-group">
+          <label>Name:</label>
+          <input type="text" class="form-control" formControlName="name" [ngClass]="{ 'is-invalid': submitted && !f.name.valid }" />
+          <div *ngIf="submitted && !f.name.valid && f.name.errors.required" class="invalid-feedback">First Name is required</div>
+        </div>
 
-    <div class="form-group">
-      <label>Client Type:</label>
-      <input type="hidden" formControlName="clientType" class="form-control" pattern="^(?!.*Select).*$">
-      <ul class="nav nav-pills">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-toggle="dropdown" [routerLink]="" role="button" aria-haspopup="true" aria-expanded="false">{{clientTypeValue.description}}</a>
-          <div *ngIf="clientType == 'Select'" class="invalid-feedback">Client Type is required</div>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" (click)="onClientTypeUnselected()" [routerLink]="">Select</a>
-            <a *ngFor="let item of clientTypes" class="dropdown-item" (click)="onClientTypeSelect(item)" [routerLink]="">{{item.description}}</a>
-          </div>
-        </li>
-      </ul>
-      <div *ngIf="editForm.controls.clientType.hasError('pattern')" class="invalid-feedback">Client Type is required</div>
-    </div>
+        <div class="form-group">
+          <label>Credit Limit:</label>
+          <input type="text" class="form-control" formControlName="creditLimit" currencyMask [ngClass]="{ 'is-invalid': submitted && !f.creditLimit.valid }" />
+          <div *ngIf="submitted && !f.creditLimit.valid && f.creditLimit.errors.required" class="invalid-feedback">Credit Limit is required</div>
+        </div>
 
-    <button class="btn btn-success">Save</button>
-  </form>
+        <div class="form-group">
+          <label>Client Type:</label>
+          <ul class="nav nav-pills">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" [routerLink]="" role="button" aria-haspopup="true" aria-expanded="false">{{f.clientType.value}}</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" (click)="onClientTypeSelect()" [routerLink]="">Select</a>
+                <a *ngFor="let item of clientTypes" class="dropdown-item" (click)="onClientTypeSelect(item)" [routerLink]="">{{item.description}}</a>
+              </div>
+            </li>
+          </ul>
+          <input type="text" formControlName="clientType" class="form-control display-none" [ngClass]="{ 'is-invalid': submitted && !f.clientType.valid }">
+          <div *ngIf="submitted && !f.clientType.valid && f.clientType.errors.pattern" class="invalid-feedback">Client Type is invalid select someone</div>
+        </div>
+
+        <button class="btn btn-success">Save</button>
+        <button class="btn btn-primary margin-left" (click)="back()">Back</button>
+      </form>
+    </div>
+  </div>
 </div>

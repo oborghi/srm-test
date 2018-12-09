@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/client")
 public class ClientController {
     @Autowired
@@ -41,7 +42,7 @@ public class ClientController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Optional<Client> getClientById(@PathVariable int id) {
+    public Client getClientById(@PathVariable int id) {
         return this.clientService.getClientById(id);
     }
 

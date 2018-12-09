@@ -1,7 +1,8 @@
-import { RouterModule, Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { AddClientComponent } from './add-client/add-client.component';
 import { EditClientComponent } from './edit-client/edit-client.component';
 import { ListClientComponent } from './list-client/list-client.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
     {
@@ -17,9 +18,13 @@ const routes: Routes = [
        component: EditClientComponent
     },
     {
-       path: '',
-       component: ListClientComponent
+       path: 'login',
+       component: LoginComponent
     },
+    {
+       path: '**',
+       redirectTo: 'login'
+    }
 ];
 
 export const routing = RouterModule.forRoot(routes);
