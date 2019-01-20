@@ -17,14 +17,14 @@ export class AddClientComponent implements OnInit {
     , private riskService: RiskService
     , private formBuilder: FormBuilder) { }
 
-  clientTypes: Risk[];
+  risks: Risk[];
   addClientForm: FormGroup;
   submitted = false;
 
   ngOnInit() {
     this.riskService.getRisks()
       .subscribe( data => {
-        this.clientTypes = data;
+        this.risks = data;
     });
 
     this.addClientForm = this.formBuilder.group({

@@ -1,12 +1,13 @@
 import org.junit.Assert;
 import org.junit.Test;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
-public class CsrfAuthTest extends BaseTest {
+public class UserControllerTest extends BaseTest {
 
     @Test
     public void testGetToken(){
@@ -25,9 +26,10 @@ public class CsrfAuthTest extends BaseTest {
 
     @Test
     public void tesCallWithBasicAuth(){
+        HttpEntity<Object> requestEntity = new HttpEntity<>(getXSRF());
+
         ResponseEntity<Object> responseEntity = restTemplate
-                .withBasicAuth("user","pa$$word")
-                .exchange(createURLWithPort("/user"), HttpMethod.GET, null, Object.class);
+                .exchange(createURLWithPort("/user"), HttpMethod.GET, requestEntity, Object.class);
 
         Assert.assertNotNull(responseEntity);
         Assert.assertNotNull(responseEntity.getStatusCode());

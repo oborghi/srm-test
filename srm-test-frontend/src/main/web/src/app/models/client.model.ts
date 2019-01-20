@@ -3,4 +3,5 @@ export class Client {
    name: string;
    creditLimit: number;
    risk: string;
+   tax: number;
 }

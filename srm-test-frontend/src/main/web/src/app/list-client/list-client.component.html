@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row margin-top">
     <div class="col-md-6 offset-md-3">
-      <h2> Client Details</h2>
+      <h2> Clients Credits</h2>
       <div class="btn-toolbar text-center well margin-bottom">
         <button class="btn btn-primary" (click)="addClient()"> Add</button>
       </div>
@@ -22,7 +22,7 @@
             <td>{{client.name}}</td>
             <td>{{client.creditLimit | currency}}</td>
             <td>{{client.risk}}</td>
-            <td>{{client.tax}}</td>
+            <td>{{(client.tax / 100) | percent}}</td>
             <td>
               <button class="btn btn-danger" (click)="deleteClient(client)"> Delete</button>
               <button class="btn btn-success margin-left" (click)="editClient(client)"> Edit</button>

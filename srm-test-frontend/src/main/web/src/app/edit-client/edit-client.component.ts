@@ -17,7 +17,7 @@ export class EditClientComponent implements OnInit {
       , private RiskService: RiskService
       , private formBuilder: FormBuilder) { }
 
-    Risks: Risk[];
+    risks: Risk[];
     editClientForm: FormGroup;
     submitted = false;
 
@@ -25,7 +25,7 @@ export class EditClientComponent implements OnInit {
 
       this.RiskService.getRisks()
         .subscribe( data => {
-          this.Risks = data;
+          this.risks = data;
       });
 
       this.editClientForm = this.formBuilder.group({
