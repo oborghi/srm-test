@@ -1,4 +1,4 @@
-export class ClientType {
+export class Risk {
   id: number;
   description: string;
 }

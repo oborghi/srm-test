@@ -2,12 +2,11 @@ package com.srm.test.service;
 
 import com.srm.test.dao.ClientDao;
 import com.srm.test.entity.Client;
-import com.srm.test.entity.ClientTypeEnum;
+import com.srm.test.entity.RiskEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ClientService {
@@ -40,20 +39,16 @@ public class ClientService {
 
     private Client applyRiskFactor(Client client){
 
-        Float percentFactor = 0F;
+        Float tax = 0F;
         Float creditLimit = client.getCreditLimit();
 
-        if(client.getClientType().equals(ClientTypeEnum.B)){
-            percentFactor = 10F;
-        } else if(client.getClientType().equals(ClientTypeEnum.C)){
-            percentFactor = 20F;
+        if(client.getRisk().equals(RiskEnum.B)){
+            tax = 10F;
+        } else if(client.getRisk().equals(RiskEnum.C)){
+            tax = 20F;
         }
 
-        if(!client.getClientType().equals(ClientTypeEnum.A)) {
-            Float percentValue = (creditLimit / 100F) * percentFactor;
-            creditLimit = creditLimit + percentValue;
-            client.setCreditLimit(creditLimit);
-        }
+        client.setTax(tax);
 
         return client;
     }

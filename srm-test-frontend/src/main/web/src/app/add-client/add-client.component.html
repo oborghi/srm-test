@@ -16,18 +16,18 @@
         </div>
 
         <div class="form-group">
-          <label>Client Type:</label>
+          <label>Risk:</label>
           <ul class="nav nav-pills">
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" data-toggle="dropdown" [routerLink]="" role="button" aria-haspopup="true" aria-expanded="false">{{f.clientType.value}}</a>
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" [routerLink]="" role="button" aria-haspopup="true" aria-expanded="false">{{f.risk.value}}</a>
               <div class="dropdown-menu">
                 <a class="dropdown-item" (click)="onClientTypeSelect()" [routerLink]="">Select</a>
-                <a *ngFor="let item of clientTypes" class="dropdown-item" (click)="onClientTypeSelect(item)" [routerLink]="">{{item.description}}</a>
+                <a *ngFor="let item of clientTypes" class="dropdown-item" (click)="onRiskSelect(item)" [routerLink]="">{{item.description}}</a>
               </div>
             </li>
           </ul>
-          <input type="text" formControlName="clientType" class="form-control display-none" [ngClass]="{ 'is-invalid': submitted && !f.clientType.valid }">
-          <div *ngIf="submitted && !f.clientType.valid && f.clientType.errors.pattern" class="invalid-feedback">Client Type is invalid select someone</div>
+          <input type="text" formControlName="risk" class="form-control display-none" [ngClass]="{ 'is-invalid': submitted && !f.risk.valid }">
+          <div *ngIf="submitted && !f.risk.valid && f.risk.errors.pattern" class="invalid-feedback">Client Type is invalid select someone</div>
         </div>
 
         <button class="btn btn-success">Save</button>

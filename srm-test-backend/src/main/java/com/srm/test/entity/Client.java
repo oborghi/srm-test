@@ -24,16 +24,19 @@ public class Client {
     @NotNull(message = "The creditLimit field is required")
     private Float creditLimit;
 
-    @Column(name = "CLIENT_TYPE")
-    @NotNull(message = "The clientType field is required")
-    @Convert(converter = ClientTypeEnumConverter.class)
-    private ClientTypeEnum clientType;
+    @Column(name = "RISK")
+    @NotNull(message = "The risk field is required")
+    @Convert(converter = RiskEnumConverter.class)
+    private RiskEnum risk;
+
+    @Column(name = "TAX")
+    private Float tax;
 
 
-    public Client(String name, Float creditLimit, ClientTypeEnum clientType) {
+    public Client(String name, Float creditLimit, RiskEnum risk) {
         this.name = name;
         this.creditLimit = creditLimit;
-        this.clientType = clientType;
+        this.risk = risk;
     }
 
     protected Client() {
@@ -68,17 +71,25 @@ public class Client {
     public String toString() {
         return "Client{" +
                 "id=" + id +
-                ", name='" + (isNull(name) ? "" : name) +'\'' +
+                ", name='" + (isNull(name) ? "" : name) + '\'' +
                 ", creditLimit=" + (isNull(creditLimit) ? "" : String.valueOf(creditLimit))  +
-                ", clientType='" + (isNull(clientType) ? "" : String.valueOf(clientType)) + '\'' +
+                ", risk='" + (isNull(risk) ? "" : String.valueOf(risk)) + '\'' +
                 '}';
     }
 
-    public ClientTypeEnum getClientType() {
-        return clientType;
+    public RiskEnum getRisk() {
+        return risk;
     }
 
-    public void setClientType(ClientTypeEnum clientType) {
-        this.clientType = clientType;
+    public void setRisk(RiskEnum risk) {
+        this.risk = risk;
+    }
+
+    public Float getTax() {
+        return tax;
+    }
+
+    public void setTax(Float tax) {
+        this.tax = tax;
     }
 }

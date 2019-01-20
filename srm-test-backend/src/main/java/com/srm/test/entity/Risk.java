@@ -7,8 +7,8 @@ import javax.persistence.*;
 import static java.util.Objects.isNull;
 
 @Entity
-@Table(name = "CLIENT_TYPE")
-public class ClientType {
+@Table(name = "RISK")
+public class Risk {
     @Column(name = "ID")
     @Id
     private Integer id;
@@ -35,7 +35,7 @@ public class ClientType {
 
     @Override
     public String toString() {
-        return "ClientType{" +
+        return "Risk{" +
                 "id=" + id +
                 ", description='" + (isNull(description) ? "" : description) +'\'' +
                 '}';

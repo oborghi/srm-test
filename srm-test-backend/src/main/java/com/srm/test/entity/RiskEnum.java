@@ -1,11 +1,11 @@
 package com.srm.test.entity;
 
-public enum ClientTypeEnum {
+public enum RiskEnum {
     A(1), B(2), C(3);
 
     private Integer code;
 
-    ClientTypeEnum(Integer code) {
+    RiskEnum(Integer code) {
         this.code = code;
     }
 
@@ -13,8 +13,8 @@ public enum ClientTypeEnum {
         return code;
     }
 
-    public static ClientTypeEnum fromCode(Integer code) {
-        for (ClientTypeEnum item :ClientTypeEnum.values()){
+    public static RiskEnum fromCode(Integer code) {
+        for (RiskEnum item : RiskEnum.values()){
             if (item.getCode().equals(code)){
                 return item;
             }

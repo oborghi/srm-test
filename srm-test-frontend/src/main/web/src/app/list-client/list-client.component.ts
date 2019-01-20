@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Client } from "../models/client.model";
 import { Router } from "@angular/router";
 import { ClientService } from '../services/client.service';
-import { ClientTypeService } from '../services/client-type.service';
 
 @Component({
   selector: 'app-list-client',

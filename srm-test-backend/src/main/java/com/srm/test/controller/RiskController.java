@@ -1,7 +1,7 @@
 package com.srm.test.controller;
 
-import com.srm.test.entity.ClientType;
-import com.srm.test.service.ClientTypeService;
+import com.srm.test.entity.Risk;
+import com.srm.test.service.RiskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,13 +12,13 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api/clientType")
-public class ClientTypeController {
+@RequestMapping("/api/risk")
+public class RiskController {
     @Autowired
-    private ClientTypeService clientTypeService;
+    private RiskService riskService;
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public List<ClientType> getAllClientTypes() {
-        return this.clientTypeService.getAllClientTypes();
+    public List<Risk> getAllRisk() {
+        return this.riskService.getRiskTypes();
     }
 }

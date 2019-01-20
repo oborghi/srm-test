@@ -11,7 +11,8 @@
             <th>Id</th>
             <th>Name</th>
             <th>Credit Limit</th>
-            <th>Client Type</th>
+            <th>Risk</th>
+            <th>Tax</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -20,7 +21,8 @@
             <td>{{client.id}}</td>
             <td>{{client.name}}</td>
             <td>{{client.creditLimit | currency}}</td>
-            <td>{{client.clientType}}</td>
+            <td>{{client.risk}}</td>
+            <td>{{client.tax}}</td>
             <td>
               <button class="btn btn-danger" (click)="deleteClient(client)"> Delete</button>
               <button class="btn btn-success margin-left" (click)="editClient(client)"> Edit</button>

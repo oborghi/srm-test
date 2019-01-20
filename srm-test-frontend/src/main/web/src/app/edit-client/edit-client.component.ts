@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ClientType } from "../models/client-type.model";
+import { Risk } from "../models/risk.model";
 import { Router } from "@angular/router";
 import { ClientService } from '../services/client.service';
-import { ClientTypeService } from '../services/client-type.service';
+import { RiskService } from '../services/risk.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -14,25 +14,25 @@ export class EditClientComponent implements OnInit {
 
   constructor(private router: Router
       , private clientService: ClientService
-      , private clientTypeService: ClientTypeService
+      , private RiskService: RiskService
       , private formBuilder: FormBuilder) { }
 
-    clientTypes: ClientType[];
+    Risks: Risk[];
     editClientForm: FormGroup;
     submitted = false;
 
     ngOnInit() {
 
-      this.clientTypeService.getClientTypes()
+      this.RiskService.getRisks()
         .subscribe( data => {
-          this.clientTypes = data;
+          this.Risks = data;
       });
 
       this.editClientForm = this.formBuilder.group({
           id: [''],
           name: ['', Validators.required],
           creditLimit : ['', Validators.required],
-          clientType: ['', Validators.pattern(/^(?!.*Select).*$/)]
+          risk: ['', Validators.pattern(/^(?!.*Select).*$/)]
       });
 
       let clientId = localStorage.getItem("editClientId");
@@ -48,20 +48,20 @@ export class EditClientComponent implements OnInit {
             id: data.id,
             name: data.name,
             creditLimit : data.creditLimit,
-            clientType: data.clientType
+            risk: data.risk
           });
       });
     }
 
     get f() { return this.editClientForm.controls; }
 
-    onClientTypeSelect(clientType : ClientType) {
-      let clientTypeValue = 'Select';
-      if(clientType != null) {
-        clientTypeValue = clientType.description;
+    onRiskSelect(risk : Risk) {
+      let riskValue = 'Select';
+      if(risk != null) {
+        riskValue = risk.description;
       }
       this.editClientForm.patchValue({
-        clientType: clientTypeValue
+        risk: riskValue
       });
     }
 
